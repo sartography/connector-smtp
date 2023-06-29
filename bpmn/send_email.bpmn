@@ -18,9 +18,9 @@
             <spiffworkflow:parameter id="email_subject" type="str" value="&#34;Just testing&#34;" />
             <spiffworkflow:parameter id="email_to" type="str" value="&#34;jon.herron@yahoo.com&#34;" />
             <spiffworkflow:parameter id="smtp_host" type="str" value="&#34;127.0.0.1&#34;" />
+            <spiffworkflow:parameter id="smtp_password" type="str" value="None" />
             <spiffworkflow:parameter id="smtp_port" type="int" value="1025" />
-            <spiffworkflow:parameter id="smtp_user" type="str" value="&#34;secret:SMTP_USER&#34;" />
-            <spiffworkflow:parameter id="smtp_password" type="str" value="&#34;secret:SMTP_PASSWORD&#34;" />
+            <spiffworkflow:parameter id="smtp_user" type="str" value="None" />
           </spiffworkflow:parameters>
         </spiffworkflow:serviceTaskOperator>
       </bpmn:extensionElements>
