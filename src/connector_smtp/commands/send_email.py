@@ -3,7 +3,7 @@ from smtplib import SMTP
 from typing import Any
 
 from spiffworkflow_connector_command.command_interface import CommandErrorDict
-from spiffworkflow_connector_command.command_interface import CommandResultDictV2
+from spiffworkflow_connector_command.command_interface import CommandResponseDict
 from spiffworkflow_connector_command.command_interface import ConnectorCommand
 from spiffworkflow_connector_command.command_interface import ConnectorProxyResponseDict
 
@@ -28,7 +28,7 @@ class SendEmail(ConnectorCommand):
         self.email_to = email_to
         self.email_from = email_from
 
-    def execute(self, _config: Any, _task_data: Any) -> CommandResultDictV2:
+    def execute(self, _config: Any, _task_data: Any) -> ConnectorProxyResponseDict:
         message = EmailMessage()
         message.set_content(self.email_body)
         message["Subject"] = self.email_subject
@@ -51,15 +51,15 @@ class SendEmail(ConnectorCommand):
             logs.append(f'did error: {str(exception)}')
             error = {"error_code": exception.__class__.__name__, "message": str(exception)}
 
-        return_response: ConnectorProxyResponseDict = {
-            "command_response": {},
-            "spiff__logs": logs,
-            "error": error,
-        }
-        result: CommandResultDictV2 = {
-            "response": return_response,
-            "status": 200,
+        return_response: CommandResponseDict = {
+            "body": {},
             "mimetype": "application/json",
+        }
+        result: ConnectorProxyResponseDict = {
+            "command_response": return_response,
+            "error": error,
+            "command_response_version": 2,
+            "spiff__logs": logs,
         }
 
         return result
