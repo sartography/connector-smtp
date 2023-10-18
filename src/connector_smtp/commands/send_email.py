@@ -52,7 +52,7 @@ class SendEmail(ConnectorCommand):
             error = {"error_code": exception.__class__.__name__, "message": str(exception)}
 
         return_response: CommandResponseDict = {
-            "body": {},
+            "body": '{}',
             "mimetype": "application/json",
         }
         result: ConnectorProxyResponseDict = {
