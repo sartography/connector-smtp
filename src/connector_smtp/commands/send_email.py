@@ -1,5 +1,6 @@
 from email.message import EmailMessage
 from smtplib import SMTP
+import ssl
 from typing import Any
 
 from spiffworkflow_connector_command.command_interface import CommandErrorDict
@@ -18,6 +19,7 @@ class SendEmail(ConnectorCommand):
         email_from: str,
         smtp_user: str | None = None,
         smtp_password: str | None = None,
+        smtp_starttls: bool | None = False
     ):
         self.smtp_host = smtp_host
         self.smtp_port = smtp_port
@@ -27,6 +29,7 @@ class SendEmail(ConnectorCommand):
         self.email_body = email_body
         self.email_to = email_to
         self.email_from = email_from
+        self.smtp_starttls = smtp_starttls
 
     def execute(self, _config: Any, _task_data: Any) -> ConnectorProxyResponseDict:
         message = EmailMessage()
@@ -42,6 +45,9 @@ class SendEmail(ConnectorCommand):
             logs.append('will send')
             with SMTP(self.smtp_host, self.smtp_port) as smtp:
                 if self.smtp_user and self.smtp_password:
+                    if self.smtp_starttls:
+                        logs.append("will starttls")
+                        smtp.starttls(context=ssl.create_default_context())
                     logs.append('will login')
                     smtp.login(self.smtp_user, self.smtp_password)
                     logs.append('did login')
