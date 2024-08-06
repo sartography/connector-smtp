@@ -14,9 +14,9 @@
         <spiffworkflow:serviceTaskOperator id="smtp/SendEmail">
           <spiffworkflow:parameters>
             <spiffworkflow:parameter id="email_body" type="str" value="&#34;Just testing the new smtp connector&#34;" />
-            <spiffworkflow:parameter id="email_from" type="str" value="&#34;testing@spiff.local&#34;" />
+            <spiffworkflow:parameter id="email_from" type="str" value="&#34;testing@example.com&#34;" />
             <spiffworkflow:parameter id="email_subject" type="str" value="&#34;Just testing&#34;" />
-            <spiffworkflow:parameter id="email_to" type="str" value="&#34;jon.herron@yahoo.com&#34;" />
+            <spiffworkflow:parameter id="email_to" type="str" value="&#34;jon@example.com&#34;" />
             <spiffworkflow:parameter id="smtp_host" type="str" value="&#34;127.0.0.1&#34;" />
             <spiffworkflow:parameter id="smtp_password" type="str" value="None" />
             <spiffworkflow:parameter id="smtp_port" type="int" value="1025" />
